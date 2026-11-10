@@ -52,3 +52,10 @@ bool saveParams(const std::string& path, const cv::Mat& cameraMatrix, const cv::
     fs.release();
     return true;
 }
+
+cv::Mat undistortImage(const cv::Mat& src, const cv::Mat& cameraMatrix, const cv::Mat& distCoeffs) {
+    cv::Mat dst;
+    // 桶形畸变（k1 < 0）矫正后画面会轻微放大、外鼓的线被拉直，四角不会有黑边
+    cv::undistort(src, dst, cameraMatrix, distCoeffs);
+    return dst;
+}

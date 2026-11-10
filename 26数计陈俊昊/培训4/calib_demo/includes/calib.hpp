@@ -29,3 +29,6 @@ double runCalibrate(const std::vector<std::vector<cv::Point3f>>& objectPoints,
 // 把结果写进 YAML，交给 undistort_demo 读。
 // 用 YAML 不用 txt：行列和类型都保留，读回来直接是 cv::Mat。
 bool saveParams(const std::string& path, const cv::Mat& cameraMatrix, const cv::Mat& distCoeffs);
+
+// 用内参 + 畸变系数把图拉直。calib_demo 里做交付图，undistort_demo 里单独演示。
+cv::Mat undistortImage(const cv::Mat& src, const cv::Mat& cameraMatrix, const cv::Mat& distCoeffs);
